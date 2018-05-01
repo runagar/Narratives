@@ -6,11 +6,13 @@ public class Event {
 
     private string name, description, optionOneDesc, optionTwoDesc;
 
-    public Event(string name, string description, string opOne, string opTwo)
+    public Event(string name)
     {
         this.name = name;
-        this.description = description;
-        this.optionOneDesc = opOne;
-        this.optionTwoDesc = opTwo;
+    }
+
+    public string GetName()
+    {
+        return name;
     }
 }

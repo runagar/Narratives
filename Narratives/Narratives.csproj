@@ -236,8 +236,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Events\Event.cs" />
-    <Compile Include="Assets\Scripts\Events\EventInitiation.cs" />
+    <Compile Include="Assets\Scripts\Events\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Events\EventOption.cs" />
+    <Compile Include="Assets\Scripts\Events\EventSelection.cs" />
+    <Compile Include="Assets\Scripts\Events\Specific Events\FloodEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\Specific Events\WitchEvent.cs" />
+    <Compile Include="Assets\Scripts\Improvements &amp; People\ImprovementHandler.cs" />
+    <Compile Include="Assets\Scripts\VillageStats.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
