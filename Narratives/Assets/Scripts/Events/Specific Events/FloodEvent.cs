@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class FloodEvent : MonoBehaviour {
 
-    private int foodEff, workEff, moraleEff, popEff;
     VillageStats villageStats;
+    EventSelection eventSelection;
+    WorkloadHandler workloadHandler;
+
     bool drawThisEvent = true;
 
     public GUISkin skin;
@@ -14,12 +16,15 @@ public class FloodEvent : MonoBehaviour {
     private int eventDescriptionWindowHeight, eventOptionWindowHeight, eventOptionWindowWidth;
     private Rect eventNameWindow, eventDescriptionWindow, eventOptionAWindow, eventOptionBWindow;
 
-
-    private string eventName, eventDescription, optionOne, optionTwo;
+    private string eventName, eventDescription, optionOne, optionTwo, optionOneTooltip, optionTwoTooltip, tooltip;
+    private bool showTooltip = false, buildingPresent;
 
     private void Start()
     {
+        eventSelection = this.gameObject.GetComponentInParent<EventSelection>();
         villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
+        workloadHandler = GameObject.Find("VillageStatHandler").GetComponent<WorkloadHandler>();
+
         eventWindowStartPosX = Screen.width / 4;
         eventWindowStartPosY = Screen.height / 4;
         eventWindowWidth = Screen.width / 2;
@@ -38,23 +43,29 @@ public class FloodEvent : MonoBehaviour {
         // Do a flood thing. e.g. options 1 & 2, based on buildings.
         if (villageStats.GetImprovement("Dike"))
         {
+            buildingPresent = true;
             villageStats.SetResource("food", -50);
 
             // Set the name, description and options for this event, if improvement has been build. e.g.
             eventName = "Flood!";
-            eventDescription = "A flood has stiken the land, but your dikes took the blunt of the blow. A small amount of food has been lost. However, the dikes are damaged, and will have to be repaired.";
+            eventDescription = "A flood has stiken the land, but your dikes took the blunt of the blow. 50 food has been lost. However, the dikes are damaged, and will have to be repaired.";
             optionOne = "Repair the dikes.";
             optionTwo = "Let them fall.";
+            optionOneTooltip = "+20 Workload for 3 months" + "\n" + "Should another flood happen the dikes will take the blunt of the blow.";
+            optionTwoTooltip = "Your dikes will fall." + "\n" + "Should another flood happen, it will hit at full strength!";
         }
         else
         {
+            buildingPresent = false;
             villageStats.SetResource("food", -150);
 
             // Set the name, description and options for this event.
             eventName = "Flood!";
-            eventDescription = "A flood has stiken the land, destroying many of your crops and flooding your barn. A large amount of food has been lost.";
+            eventDescription = "A flood has stiken the land, destroying many of your crops and flooding your barn. 150 food has been lost.";
             optionOne = "Build dikes.";
             optionTwo = "Do nothing.";
+            optionOneTooltip = "+30 Workload for 3 months" + "\n" + "Gain: Dikes" + "\n" + "Should another flood happen, it won't hit nearly as hard.";
+            optionTwoTooltip = "Reserve your workforce." + "\n" + "Should another flood happen, it will hit just as hard!";
         }
 
         drawThisEvent = true;
@@ -63,7 +74,7 @@ public class FloodEvent : MonoBehaviour {
     void OptionOneA()
     {
         // Repair the dikes
-        villageStats.SetResource("work", -20);
+        workloadHandler.repairingDikes = true;
     }
 
     void OptionTwoA()
@@ -75,7 +86,7 @@ public class FloodEvent : MonoBehaviour {
     void OptionOneB()
     {
         // Build dikes
-        villageStats.SetResource("work", -30);
+        workloadHandler.buildingDikes = true;
         villageStats.BuildImprovement("Dike");
     }
 
@@ -87,7 +98,9 @@ public class FloodEvent : MonoBehaviour {
     void OnGUI()
     {
         GUI.skin = skin;
-        skin.GetStyle("EventWindow").wordWrap = true;
+        skin.GetStyle("eventWindowDescription").wordWrap = true;
+
+        Event e = Event.current;
 
         if (drawThisEvent)
         {
@@ -95,6 +108,44 @@ public class FloodEvent : MonoBehaviour {
             GUI.Box(new Rect(eventDescriptionWindow), eventDescription, skin.GetStyle("eventWindowDescription"));
             GUI.Box(new Rect(eventOptionAWindow), optionOne, skin.GetStyle("eventWindowOption"));
             GUI.Box(new Rect(eventOptionBWindow), optionTwo, skin.GetStyle("eventWindowOption"));
+
+            if (eventOptionAWindow.Contains(e.mousePosition))
+            {
+                showTooltip = true;
+                tooltip = optionOneTooltip;
+
+                if(e.button == 0 && e.type == EventType.MouseUp)
+                {
+                    if (buildingPresent) OptionOneA();
+                    else OptionOneB();
+                    drawThisEvent = false;
+                    eventSelection.SetReadyForNewEvent();
+                }
+            }
+            else if (eventOptionBWindow.Contains(e.mousePosition))
+            {
+                showTooltip = true;
+                tooltip = optionTwoTooltip;
+
+                if (e.button == 0 && e.type == EventType.MouseUp)
+                {
+                    if (buildingPresent) OptionTwoA();
+                    else OptionTwoB();
+                    drawThisEvent = false;
+                    eventSelection.SetReadyForNewEvent();
+                }
+            }
+            
+            if (showTooltip)
+            {
+                DrawTooltip();
+            }
         }
+    }
+
+    void DrawTooltip()
+    {
+        
+
     }
 }

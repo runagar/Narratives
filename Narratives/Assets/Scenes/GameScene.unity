@@ -275,6 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318696839}
   - component: {fileID: 1318696840}
+  - component: {fileID: 1318696841}
   m_Layer: 0
   m_Name: VillageStatHandler
   m_TagString: Untagged
@@ -307,6 +308,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skin: {fileID: 11400000, guid: fb13152136011944aa7b8101d0e4e35c, type: 2}
+--- !u!114 &1318696841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1318696838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64104a8f53ce77409e1de7f24529dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingDikes: 0
+  repairingDikes: 0
 --- !u!1 &1322632525
 GameObject:
   m_ObjectHideFlags: 0

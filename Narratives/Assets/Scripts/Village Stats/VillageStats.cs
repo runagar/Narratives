@@ -10,10 +10,13 @@ public class VillageStats : MonoBehaviour {
     private static int peopleCount = 5;
     private string[] people = new string[peopleCount];
 
-    private int food = 500, 
-                work = 100, 
-                morale = 100, 
-                population = 300;
+    private int food = 500,
+                foodConsumption = 0,
+                work = 0,
+                workThreshold = 0,
+                morale = 100,
+                population_Children = 20,
+                population_Adults = 90;
 
     public GUISkin skin;
 
@@ -30,16 +33,20 @@ public class VillageStats : MonoBehaviour {
     {
         statBoxStartPosX = Screen.width / 40;
         statBoxStartPosY = Screen.height / 20;
-        statBoxWidth = Screen.width / 8;
+        statBoxWidth = Screen.width / 6;
         statBoxHeight = Screen.height / 8;
         statBoxRect = new Rect(statBoxStartPosX, statBoxStartPosY, statBoxWidth, statBoxHeight);
+
+        for (int i = 0; i < improvementCount; i++) improvements[i] = "";
         improvements[0] = "Barn";
     }
 
     // Update is called once per frame
     void Update()
     {
-        statBoxText = "Food: " + food + "\n" + "Workload: " + work + "\n" + "Morale: " + morale + "\n" + "Population: " + population;
+        foodConsumption = (int)((population_Adults + population_Children) / 2.0);
+        workThreshold = population_Adults * 2;
+        statBoxText = "Food: " + food + " (" + foodConsumption + ") " + "\n" + "Workload: " + work + "/" + workThreshold + "\n" + "Morale: " + morale + "\n" + "Population: " + population_Children + " / " + population_Adults;
     }
 
     //Look for a specific improvement in the list. Return true if it is present.
@@ -103,6 +110,7 @@ public class VillageStats : MonoBehaviour {
             }
         }
     }
+
     public void RemovePerson(string person)
     {
         for (int i = 0; i < peopleCount; i++)
@@ -121,19 +129,68 @@ public class VillageStats : MonoBehaviour {
         {
             case "food":
                 food += i;
+                if (food < 0) food = 0;
                 break;
             case "work":
-                work += i;
+                work = i;
                 break;
             case "morale":
                 morale += i;
+                if (morale <= 0) LoseGame("Morale");
                 break;
-            case "population":
-                population += i;
+            case "pop_Adults":
+                population_Adults += i;
+                if (population_Adults < 0) LoseGame("Population");
+                break;
+            case "pop_Children":
+                population_Children += i;
+                if (population_Children == 0) SetResource("morale", -15);
                 break;
             default:
                 break;
         }
+    }
+
+    public int GetResource(string resource)
+    {
+        switch (resource)
+        {
+            case "food":
+                return food;
+            case "work":
+                return work;
+            case "morale":
+                return morale;
+            case "pop_Adults":
+                return population_Adults;
+            case "pop_Children":
+                return population_Children;
+            default:
+                break;
+        }
+        return 0;
+    }
+
+    public void UpdateVillage()
+    {
+        food -= foodConsumption;
+        if (food <= 0)
+        {
+            food = 0;
+            SetResource("pop_Adults", -3);
+            SetResource("pop_Children", -1);
+            SetResource("morale", -10);
+        }
+
+        if (work > workThreshold) SetResource("morale", -5);
+        if (morale < 0) morale = 0;
+        if (population_Children < 0) population_Children = 0;
+        if (population_Adults < 0) population_Adults = 0;
+    }
+
+    private void LoseGame(string lossCondition)
+    {
+
     }
 
     private void OnGUI()

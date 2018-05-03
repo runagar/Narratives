@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EventSelection : MonoBehaviour {
 
+    WorkloadHandler workloadHandler;
+    VillageStats villageStats;
+
     // Event initialization
     private static int numEvents = 2;
-    private Event[] events = new Event[numEvents];
+    private MonthlyEvent[] events = new MonthlyEvent[numEvents];
 
     // Event selection
     private int eventPickNumber = 0;
@@ -17,8 +20,10 @@ public class EventSelection : MonoBehaviour {
     // Event Creation in Start()
     void Start ()
     {
-        events[0] = new Event("Flood");
-        events[1] = new Event("Flood");
+        workloadHandler = GameObject.Find("VillageStatHandler").GetComponent<WorkloadHandler>();
+        villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
+        events[0] = new MonthlyEvent("Flood", 4);
+        events[1] = new MonthlyEvent("Flood", 4);
     }
 
     private void Update()
@@ -38,16 +43,28 @@ public class EventSelection : MonoBehaviour {
     // Pick an event and execute it.
     void SelectEvent()
     {
+        int eventPickBreaker = 0;
         // Pick an event we did not have last cycle.
-        while(eventPickNumber == oldEvent)
+        while(eventPickNumber == oldEvent || !events[eventPickNumber].GetAvailable())
         {
             eventPickNumber = Random.Range(0, numEvents);
+            eventPickBreaker++;
+            if (eventPickBreaker > 30) break;
         }
 
         oldEvent = eventPickNumber; // Store the event we had this time
 
+        foreach(MonthlyEvent e in events)
+        {
+            e.UpdateAvailabilityTimer();
+        }
+        events[eventPickNumber].SetUnavilable();
+
         // Get the name of the event, and execute it in the handler.
         string eventName = events[eventPickNumber].GetName();
         this.gameObject.GetComponent<EventHandler>().HandleEvent(eventName);
+
+        workloadHandler.UpdateWorkload();
+        villageStats.UpdateVillage();
     }
 }

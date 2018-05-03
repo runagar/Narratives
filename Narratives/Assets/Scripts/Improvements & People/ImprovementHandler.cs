@@ -25,9 +25,11 @@ public class ImprovementHandler : MonoBehaviour {
         {
             if (improvements[i] == improvement)
             {
+                Debug.Log("Found: " + improvement);
                 return true;
             }
         }
+        Debug.Log("Found: Nothing");
         return false;
     }
 
