@@ -10,18 +10,36 @@ public class VillageStats : MonoBehaviour {
     private static int peopleCount = 5;
     private string[] people = new string[peopleCount];
 
-    private int food, work, morale, population;
+    private int food = 500, 
+                work = 100, 
+                morale = 100, 
+                population = 300;
+
+    public GUISkin skin;
+
+    private Rect statBoxRect;
+    private int statBoxStartPosX,
+                statBoxStartPosY,
+                statBoxWidth,
+                statBoxHeight;
+
+    private string statBoxText;
 
     // Use this for initialization
     void Start()
     {
+        statBoxStartPosX = Screen.width / 40;
+        statBoxStartPosY = Screen.height / 20;
+        statBoxWidth = Screen.width / 8;
+        statBoxHeight = Screen.height / 8;
+        statBoxRect = new Rect(statBoxStartPosX, statBoxStartPosY, statBoxWidth, statBoxHeight);
         improvements[0] = "Barn";
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        statBoxText = "Food: " + food + "\n" + "Workload: " + work + "\n" + "Morale: " + morale + "\n" + "Population: " + population;
     }
 
     //Look for a specific improvement in the list. Return true if it is present.
@@ -116,5 +134,13 @@ public class VillageStats : MonoBehaviour {
             default:
                 break;
         }
+    }
+
+    private void OnGUI()
+    {
+        GUI.skin = skin;
+        skin.GetStyle("StatBox").wordWrap = true;
+
+        GUI.Box(new Rect(statBoxRect), statBoxText, skin.GetStyle("StatBox"));
     }
 }

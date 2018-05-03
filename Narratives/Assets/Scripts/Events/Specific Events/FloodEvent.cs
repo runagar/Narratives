@@ -10,8 +10,9 @@ public class FloodEvent : MonoBehaviour {
 
     public GUISkin skin;
 
-    private int eventWindowStartPosX, eventWindowStartPosY, eventWindowHeight, eventWindowWidth;
-    private Rect eventWindow;
+    private int eventWindowStartPosX, eventWindowStartPosY, eventNameWindowHeight, eventWindowWidth;
+    private int eventDescriptionWindowHeight, eventOptionWindowHeight, eventOptionWindowWidth;
+    private Rect eventNameWindow, eventDescriptionWindow, eventOptionAWindow, eventOptionBWindow;
 
 
     private string eventName, eventDescription, optionOne, optionTwo;
@@ -22,8 +23,14 @@ public class FloodEvent : MonoBehaviour {
         eventWindowStartPosX = Screen.width / 4;
         eventWindowStartPosY = Screen.height / 4;
         eventWindowWidth = Screen.width / 2;
-        eventWindowHeight = Screen.height / 2;
-        eventWindow = new Rect(eventWindowStartPosX, eventWindowStartPosY, eventWindowWidth, eventWindowHeight);
+        eventNameWindowHeight = Screen.height / 12;
+        eventDescriptionWindowHeight = Screen.height / 4;
+        eventOptionWindowHeight = Screen.height / 12;
+        eventOptionWindowWidth = Screen.width / 4;
+        eventNameWindow = new Rect(eventWindowStartPosX, eventWindowStartPosY, eventWindowWidth, eventNameWindowHeight);
+        eventDescriptionWindow = new Rect(eventWindowStartPosX, eventWindowStartPosY + eventNameWindowHeight, eventWindowWidth, eventDescriptionWindowHeight);
+        eventOptionAWindow = new Rect(eventWindowStartPosX, eventWindowStartPosY + eventNameWindowHeight + eventDescriptionWindowHeight, eventOptionWindowWidth, eventOptionWindowHeight);
+        eventOptionBWindow = new Rect(eventWindowStartPosX + eventOptionWindowWidth, eventWindowStartPosY + eventNameWindowHeight + eventDescriptionWindowHeight, eventOptionWindowWidth, eventOptionWindowHeight);
     }
 
     public void LaunchEvent()
@@ -84,7 +91,10 @@ public class FloodEvent : MonoBehaviour {
 
         if (drawThisEvent)
         {
-            GUI.Box(new Rect(eventWindow), eventName);
+            GUI.Box(new Rect(eventNameWindow), eventName, skin.GetStyle("eventWindowName"));
+            GUI.Box(new Rect(eventDescriptionWindow), eventDescription, skin.GetStyle("eventWindowDescription"));
+            GUI.Box(new Rect(eventOptionAWindow), optionOne, skin.GetStyle("eventWindowOption"));
+            GUI.Box(new Rect(eventOptionBWindow), optionTwo, skin.GetStyle("eventWindowOption"));
         }
     }
 }

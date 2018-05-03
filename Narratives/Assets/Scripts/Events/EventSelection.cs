@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventSelection : MonoBehaviour {
 
     // Event initialization
-    private static int numEvents = 12;
+    private static int numEvents = 2;
     private Event[] events = new Event[numEvents];
 
     // Event selection
@@ -18,7 +18,7 @@ public class EventSelection : MonoBehaviour {
     void Start ()
     {
         events[0] = new Event("Flood");
-        events[1] = new Event("Witch");
+        events[1] = new Event("Flood");
     }
 
     private void Update()
