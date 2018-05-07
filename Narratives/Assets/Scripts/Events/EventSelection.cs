@@ -8,7 +8,7 @@ public class EventSelection : MonoBehaviour {
     VillageStats villageStats;
 
     // Event initialization
-    private static int numEvents = 2;
+    private static int numEvents = 4;
     private MonthlyEvent[] events = new MonthlyEvent[numEvents];
 
     // Event selection
@@ -25,6 +25,8 @@ public class EventSelection : MonoBehaviour {
         villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
         events[0] = new MonthlyEvent("Flood", 4);
         events[1] = new MonthlyEvent("Graveyard", 10000);
+        events[2] = new MonthlyEvent("Nomads", 9);
+        events[3] = new MonthlyEvent("Raiders", 3);
     }
 
     private void Update()

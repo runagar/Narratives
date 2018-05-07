@@ -16,7 +16,8 @@ public class VillageStats : MonoBehaviour {
                 workThreshold = 0,
                 morale = 100,
                 population_Children = 20,
-                population_Adults = 90;
+                population_Adults = 90,
+                raiders = 0;
 
     public GUISkin skin;
 
@@ -146,6 +147,9 @@ public class VillageStats : MonoBehaviour {
                 population_Children += i;
                 if (population_Children == 0) SetResource("morale", -15);
                 break;
+            case "raiders":
+                raiders += i;
+                break;
             default:
                 break;
         }
@@ -165,6 +169,8 @@ public class VillageStats : MonoBehaviour {
                 return population_Adults;
             case "pop_Children":
                 return population_Children;
+            case "raiders":
+                return raiders;
             default:
                 break;
         }

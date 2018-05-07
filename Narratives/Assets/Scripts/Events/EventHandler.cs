@@ -29,6 +29,13 @@ public class EventHandler : MonoBehaviour {
             case "Graveyard":
                 eventStore.GetComponent<GraveyardEvent>().LaunchEvent();
                 break;
+            case "Nomads":
+                eventStore.GetComponent<NomadsEvent>().LaunchEvent();
+                break;
+            case "Raiders":
+                if(villageStats.GetResource("raiders")>0) eventStore.GetComponent<RaidersEvent>().LaunchEvent();
+                else eventStore.GetComponent<NomadsEvent>().LaunchEvent();
+                break;
             default:
                 break;
         }

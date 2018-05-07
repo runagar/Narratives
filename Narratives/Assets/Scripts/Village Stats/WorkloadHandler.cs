@@ -9,11 +9,12 @@ public class WorkloadHandler : MonoBehaviour {
     private int workload;
     private int workloadThreshold;
 
-    public bool buildingDikes, repairingDikes;
-    public bool buildingGraveyard, buildingMassGrave;
+    public bool buildingDikes, repairingDikes, reparingBarricade;
+    public bool buildingGraveyard, buildingMassGrave, buildingBarricade;
 
     private int dikeTimer = 0, dikeTimerEnd = 3;
     private int graveyardTimer = 0, graveyardTimerEnd = 2;
+    private int barricadeTimer = 0, barricadeTimerEnd = 3;
     private void Start()
     {
         villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
@@ -28,6 +29,28 @@ public class WorkloadHandler : MonoBehaviour {
         {
             int farmingWorkload = (int)workloadThreshold / 2;
             workload += farmingWorkload;
+        }
+
+        if (buildingBarricade)
+        {
+            workload += 30;
+            barricadeTimer++;
+            if(barricadeTimer >= barricadeTimerEnd)
+            {
+                barricadeTimerEnd = 0;
+                buildingBarricade = false;
+            }
+        }
+
+        if (reparingBarricade)
+        {
+            workload += 20;
+            dikeTimer++;
+            if (barricadeTimer >= barricadeTimerEnd-1)
+            {
+                barricadeTimer = 0;
+                reparingBarricade = false;
+            }
         }
 
         if (buildingGraveyard)
