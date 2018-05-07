@@ -16,6 +16,7 @@ public class EventSelection : MonoBehaviour {
     private int oldEvent = 0;
 
     private bool readyForNewEvent = true;
+    private int currentMonth = 3;
 
     // Event Creation in Start()
     void Start ()
@@ -38,6 +39,11 @@ public class EventSelection : MonoBehaviour {
     public void SetReadyForNewEvent()
     {
         readyForNewEvent = true;
+    }
+
+    public int GetCurrentMonth()
+    {
+        return currentMonth;
     }
  
     // Pick an event and execute it.
@@ -64,7 +70,9 @@ public class EventSelection : MonoBehaviour {
         string eventName = events[eventPickNumber].GetName();
         this.gameObject.GetComponent<EventHandler>().HandleEvent(eventName);
 
-        workloadHandler.UpdateWorkload();
-        villageStats.UpdateVillage();
+        workloadHandler.UpdateWorkload(currentMonth);
+        villageStats.UpdateVillage(currentMonth);
+        currentMonth++;
+        if (currentMonth >= 13) currentMonth = 1;
     }
 }

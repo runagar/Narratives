@@ -18,10 +18,16 @@ public class WorkloadHandler : MonoBehaviour {
         villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
     }
 
-    public void UpdateWorkload()
+    public void UpdateWorkload(int currentMonth)
     {
         workload = 0;
         workloadThreshold = villageStats.GetResource("pop_Adults")*2;
+
+        if(currentMonth > 4 && currentMonth < 10)
+        {
+            int farmingWorkload = (int)workloadThreshold / 2;
+            workload += farmingWorkload;
+        }
 
         if (buildingDikes)
         {

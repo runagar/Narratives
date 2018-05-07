@@ -171,8 +171,15 @@ public class VillageStats : MonoBehaviour {
         return 0;
     }
 
-    public void UpdateVillage()
+    public void UpdateVillage(int currentMonth)
     {
+        // If the harvesting months are here
+        if(currentMonth > 6 && currentMonth < 10)
+        {
+            food += foodConsumption * 4;
+        }
+
+        // Consume food
         food -= foodConsumption;
         if (food <= 0)
         {

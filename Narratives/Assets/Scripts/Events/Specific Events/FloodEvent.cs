@@ -29,7 +29,7 @@ public class FloodEvent : MonoBehaviour {
         eventWindowStartPosY = Screen.height / 4;
         eventWindowWidth = Screen.width / 2;
         eventNameWindowHeight = Screen.height / 12;
-        eventDescriptionWindowHeight = Screen.height / 4;
+        eventDescriptionWindowHeight = Screen.height / 3;
         eventOptionWindowHeight = Screen.height / 12;
         eventOptionWindowWidth = Screen.width / 4;
         eventNameWindow = new Rect(eventWindowStartPosX, eventWindowStartPosY, eventWindowWidth, eventNameWindowHeight);
@@ -66,6 +66,16 @@ public class FloodEvent : MonoBehaviour {
             optionTwo = "Do nothing.";
             optionOneTooltip = "+30 Workload for 3 months" + "\n" + "Gain: Dikes" + "\n" + "Should another flood happen, it won't hit nearly as hard.";
             optionTwoTooltip = "Reserve your workforce." + "\n" + "Should another flood happen, it will hit just as hard!";
+        }
+        int currentMonth = eventSelection.GetCurrentMonth();
+
+        if(currentMonth > 4 && currentMonth < 10)
+        {
+            eventDescription += "\n \n" + "The farming season has begun, and people are busy in the fields.";
+            if(currentMonth > 6)
+            {
+                eventDescription += "\n" + "Harvest is coming in.";
+            }
         }
 
         drawThisEvent = true;
