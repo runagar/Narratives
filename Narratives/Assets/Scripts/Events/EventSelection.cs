@@ -24,7 +24,7 @@ public class EventSelection : MonoBehaviour {
         workloadHandler = GameObject.Find("VillageStatHandler").GetComponent<WorkloadHandler>();
         villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
         events[0] = new MonthlyEvent("Flood", 4);
-        events[1] = new MonthlyEvent("Flood", 4);
+        events[1] = new MonthlyEvent("Graveyard", 10000);
     }
 
     private void Update()
