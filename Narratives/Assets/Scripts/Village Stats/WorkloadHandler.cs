@@ -18,7 +18,6 @@ public class WorkloadHandler : MonoBehaviour {
     private int mineTimer = 0, mineTimerEnd = 1;
     private void Start()
     {
-        buildingMine = false;
         villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
     }
 

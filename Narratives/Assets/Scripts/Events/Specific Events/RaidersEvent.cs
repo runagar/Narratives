@@ -65,8 +65,8 @@ public class RaidersEvent : MonoBehaviour {
             // Set the name, description and options for this event, if improvement has been build. e.g.
             eventName = "Raiders are here.";
             eventDescription = "The village is approched wandering band of " + raiders + " raiders.";
-            optionOne = "Defend the village with your life.";
-            optionTwo = "Wait them out and build a barricade after they leave";
+            optionOne = "Wait them out and build a barricade after they leave";
+            optionTwo = "Defend the village with your life.";
             optionOneTooltip = "- " + randAdults + " adults" + "\n" + "Morale and Food decreases.";
             optionTwoTooltip = "Morale and Food significantly decreases. +30 Workload for 3 months";
         }

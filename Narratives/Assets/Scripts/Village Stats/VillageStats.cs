@@ -39,6 +39,7 @@ public class VillageStats : MonoBehaviour {
         statBoxRect = new Rect(statBoxStartPosX, statBoxStartPosY, statBoxWidth, statBoxHeight);
 
         for (int i = 0; i < improvementCount; i++) improvements[i] = "";
+        for (int i = 0; i < peopleCount; i++) people[i] = "";
         improvements[0] = "Barn";
     }
 
@@ -102,7 +103,7 @@ public class VillageStats : MonoBehaviour {
 
     public void SetPerson(string person)
     {
-        for (int i = 0; i < improvementCount; i++)
+        for (int i = 0; i < peopleCount; i++)
         {
             if (people[i] == "")
             {
