@@ -45,19 +45,7 @@ public class RaidersEvent : MonoBehaviour {
     public void LaunchEvent()
     {
         raiders = villageStats.GetResource("raiders");
-        if (!villageStats.GetImprovement("Barricade"))
-        {
-            buildingPresent = false;
-            randAdults = Random.Range(0, 20);
-            // Set the name, description and options for this event, if improvement has been build. e.g.
-            eventName = "Raiders are here.";
-            eventDescription = "The village is approched wandering band of " + raiders + " raiders.";
-            optionOne = "Defend the village with your life.";
-            optionTwo = "Wait them out and build a barricade after they leave";
-            optionOneTooltip = "- " + randAdults + " adults" + "\n" + "Morale and Food decreases.";
-            optionTwoTooltip = "Morale and Food significantly decreases. +30 Workload for 3 months";
-        }
-        else
+        if (villageStats.GetImprovement("Barricade"))
         {
             buildingPresent = true;
             //set the name and option for this case of the event.
@@ -69,6 +57,18 @@ public class RaidersEvent : MonoBehaviour {
             optionTwo = "Defend the village and repair the barricade after they leave";
             optionOneTooltip = "- " + randAdults + " adults" + "\n" + "Morale and Food decreases.";
             optionTwoTooltip = "Lose some adults. +20 Workload for 3 months";
+        }
+        else
+        {
+            buildingPresent = false;
+            randAdults = Random.Range(0, 20);
+            // Set the name, description and options for this event, if improvement has been build. e.g.
+            eventName = "Raiders are here.";
+            eventDescription = "The village is approched wandering band of " + raiders + " raiders.";
+            optionOne = "Defend the village with your life.";
+            optionTwo = "Wait them out and build a barricade after they leave";
+            optionOneTooltip = "- " + randAdults + " adults" + "\n" + "Morale and Food decreases.";
+            optionTwoTooltip = "Morale and Food significantly decreases. +30 Workload for 3 months";
         }
        
         int currentMonth = eventSelection.GetCurrentMonth();
