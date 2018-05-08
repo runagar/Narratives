@@ -195,6 +195,11 @@ public class VillageStats : MonoBehaviour {
             SetResource("morale", -10);
         }
 
+        if (GetImprovement("Mine"))
+        {
+            SetResource("morale", 1);
+        }
+
         if (work > workThreshold) SetResource("morale", -5);
         if (morale < 0) morale = 0;
         if (population_Children < 0) population_Children = 0;

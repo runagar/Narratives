@@ -36,6 +36,9 @@ public class EventHandler : MonoBehaviour {
                 if(villageStats.GetResource("raiders")>0) eventStore.GetComponent<RaidersEvent>().LaunchEvent();
                 else eventStore.GetComponent<NomadsEvent>().LaunchEvent();
                 break;
+            case "Mine":
+                eventStore.GetComponent<PreciousMetalsEvent>().LaunchEvent();
+                break;
             default:
                 break;
         }

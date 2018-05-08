@@ -234,6 +234,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PreciousMetalsEvent.cs" />
     <Compile Include="Assets\Scripts\Events\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Events\EventOption.cs" />
     <Compile Include="Assets\Scripts\Events\EventSelection.cs" />
