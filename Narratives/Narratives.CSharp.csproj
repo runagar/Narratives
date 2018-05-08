@@ -238,6 +238,7 @@
     <Compile Include="Assets\Scripts\Events\EventOption.cs" />
     <Compile Include="Assets\Scripts\Events\EventSelection.cs" />
     <Compile Include="Assets\Scripts\Events\MonthlyEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\Specific Events\FestivalEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\FloodEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\GraveyardEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\NomadsEvent.cs" />

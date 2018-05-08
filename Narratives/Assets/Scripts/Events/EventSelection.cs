@@ -6,9 +6,10 @@ public class EventSelection : MonoBehaviour {
 
     WorkloadHandler workloadHandler;
     VillageStats villageStats;
+    FestivalEvent festival;
 
     // Event initialization
-    private static int numEvents = 6;
+    private static int numEvents = 7;
     private MonthlyEvent[] events = new MonthlyEvent[numEvents];
 
     // Event selection
@@ -18,9 +19,15 @@ public class EventSelection : MonoBehaviour {
     private bool readyForNewEvent = true;
     private int currentMonth = 3;
 
+    private int monthsSinceFestival = 0;
+
+    int pickBreakAmount = 0;
+
     // Event Creation in Start()
     void Start ()
     {
+        monthsSinceFestival = 0;
+        festival = GameObject.Find("events").GetComponent<FestivalEvent>();
         workloadHandler = GameObject.Find("VillageStatHandler").GetComponent<WorkloadHandler>();
         villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
         events[0] = new MonthlyEvent("Flood", 4);
@@ -29,6 +36,7 @@ public class EventSelection : MonoBehaviour {
         events[3] = new MonthlyEvent("Raiders", 3);
         events[4] = new MonthlyEvent("Mine", 6);
         events[5] = new MonthlyEvent("Witch", 7);
+        events[6] = new MonthlyEvent("Festival", 12);
     }
 
     private void Update()
@@ -53,6 +61,7 @@ public class EventSelection : MonoBehaviour {
     // Pick an event and execute it.
     void SelectEvent()
     {
+
         Debug.Log("---------------------------NEW CYCLE---------------------------");
         int eventPickBreaker = 0;
         // Pick an event we did not have last cycle.
@@ -60,7 +69,12 @@ public class EventSelection : MonoBehaviour {
         {
             eventPickNumber = Random.Range(0, numEvents);
             eventPickBreaker++;
-            if (eventPickBreaker > 30) break;
+            if (eventPickBreaker > 30)
+            {
+                pickBreakAmount++;
+                Debug.Log("Break - PickTimer: " + pickBreakAmount);
+                break;
+            }
         }
 
         oldEvent = eventPickNumber; // Store the event we had this time
@@ -71,13 +85,34 @@ public class EventSelection : MonoBehaviour {
         }
         events[eventPickNumber].SetUnavilable();
 
-        // Get the name of the event, and execute it in the handler.
         string eventName = events[eventPickNumber].GetName();
+
+        if (villageStats.GetImprovement("Festival")) monthsSinceFestival++;
+        Debug.Log("months since festival: " + monthsSinceFestival);
+        if (monthsSinceFestival >= 9)
+        {
+            eventName = "Festival";
+            monthsSinceFestival = 0;
+
+        }
+
+        // Get the name of the event, and execute it in the handler.
         this.gameObject.GetComponent<EventHandler>().HandleEvent(eventName);
 
         workloadHandler.UpdateWorkload(currentMonth);
         villageStats.UpdateVillage(currentMonth);
         currentMonth++;
         if (currentMonth >= 13) currentMonth = 1;
+    }
+
+    void BirthEvent()
+    {
+
+        if(festival.GetBanquetState()) monthsSinceFestival++;
+        
+        if(monthsSinceFestival == 9)
+        {
+
+        }
     }
 }

@@ -38,6 +38,9 @@ public class EventHandler : MonoBehaviour {
             case "Mine":
                 eventStore.GetComponent<PreciousMetalsEvent>().LaunchEvent();
                 break;
+            case "Festival":
+                eventStore.GetComponent<FestivalEvent>().LaunchEvent();
+                break;
             default:
                 break;
         }
