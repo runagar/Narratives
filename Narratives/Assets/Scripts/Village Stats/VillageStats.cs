@@ -17,7 +17,7 @@ public class VillageStats : MonoBehaviour {
                 morale = 100,
                 population_Children = 20,
                 population_Adults = 90,
-                raiders = 0;
+                raiders = 5;
 
     public GUISkin skin;
 
@@ -179,6 +179,8 @@ public class VillageStats : MonoBehaviour {
 
     public void UpdateVillage(int currentMonth)
     {
+
+        if (raiders <= 5) raiders = 5;
         // If the harvesting months are here
         if(currentMonth > 6 && currentMonth < 10)
         {

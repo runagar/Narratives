@@ -8,7 +8,7 @@ public class GraveyardEvent : MonoBehaviour {
     EventSelection eventSelection;
     WorkloadHandler workloadHandler;
 
-    bool drawThisEvent = true;
+    bool drawThisEvent = false;
 
     public GUISkin skin;
 
@@ -66,6 +66,7 @@ public class GraveyardEvent : MonoBehaviour {
     {
         villageStats.BuildImprovement("Graveyard");
         villageStats.SetResource("Morale", 10);
+        workloadHandler.buildingGraveyard = true;
     }
 
     void OptionTwo()

@@ -8,7 +8,7 @@ public class PreciousMetalsEvent : MonoBehaviour {
     EventSelection eventSelection;
     WorkloadHandler workloadHandler;
 
-    bool drawThisEvent = true;
+    bool drawThisEvent = false;
 
     public GUISkin skin;
 
@@ -102,6 +102,7 @@ public class PreciousMetalsEvent : MonoBehaviour {
         // Build mines
         workloadHandler.buildingMine = true;
         villageStats.BuildImprovement("Mine");
+        Debug.Log("Building mine from here");
     }
 
     void OptionTwoB()

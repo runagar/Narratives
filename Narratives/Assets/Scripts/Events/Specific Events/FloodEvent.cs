@@ -8,7 +8,7 @@ public class FloodEvent : MonoBehaviour {
     EventSelection eventSelection;
     WorkloadHandler workloadHandler;
 
-    bool drawThisEvent = true;
+    bool drawThisEvent = false;
 
     public GUISkin skin;
 

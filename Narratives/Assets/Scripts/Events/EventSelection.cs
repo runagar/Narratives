@@ -52,6 +52,7 @@ public class EventSelection : MonoBehaviour {
     // Pick an event and execute it.
     void SelectEvent()
     {
+        Debug.Log("---------------------------NEW CYCLE---------------------------");
         int eventPickBreaker = 0;
         // Pick an event we did not have last cycle.
         while(eventPickNumber == oldEvent || !events[eventPickNumber].GetAvailable())

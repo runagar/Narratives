@@ -234,7 +234,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\PreciousMetalsEvent.cs" />
     <Compile Include="Assets\Scripts\Events\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Events\EventOption.cs" />
     <Compile Include="Assets\Scripts\Events\EventSelection.cs" />
@@ -242,6 +241,7 @@
     <Compile Include="Assets\Scripts\Events\Specific Events\FloodEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\GraveyardEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\NomadsEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\Specific Events\PreciousMetalsEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\RaidersEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\WitchEvent.cs" />
     <Compile Include="Assets\Scripts\Improvements &amp; People\ImprovementHandler.cs" />
