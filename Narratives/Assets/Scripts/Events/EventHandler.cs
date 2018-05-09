@@ -44,6 +44,12 @@ public class EventHandler : MonoBehaviour {
             case "Disease":
                 eventStore.GetComponent<DiseaseEvent>().LaunchEvent();
                 break;
+            case "War":
+                eventStore.GetComponent<WarEvent>().LaunchEvent();
+                break;
+            case "Blight":
+                eventStore.GetComponent<BlightEvent>().LaunchEvent();
+                break;
             default:
                 break;
         }

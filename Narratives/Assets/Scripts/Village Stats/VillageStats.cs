@@ -17,7 +17,8 @@ public class VillageStats : MonoBehaviour {
                 morale = 100,
                 population_Children = 20,
                 population_Adults = 90,
-                raiders = 5;
+                raiders = 5,
+                soldiers = 0;
 
     public GUISkin skin;
 
@@ -151,6 +152,9 @@ public class VillageStats : MonoBehaviour {
             case "raiders":
                 raiders += i;
                 break;
+            case "soldiers":
+                soldiers += i;
+                break;
             default:
                 break;
         }
@@ -172,6 +176,8 @@ public class VillageStats : MonoBehaviour {
                 return population_Children;
             case "raiders":
                 return raiders;
+            case "soldiers":
+                return soldiers;
             default:
                 break;
         }
@@ -181,15 +187,33 @@ public class VillageStats : MonoBehaviour {
     public void UpdateVillage(int currentMonth)
     {
 
+        if (currentMonth >= 11 && GetImprovement("Blight"))
+        {
+            RemoveImprovement("Blight");
+            RemoveImprovement("Ration");
+        }
+
         if (raiders <= 5) raiders = 5;
         // If the harvesting months are here
-        if(currentMonth > 6 && currentMonth < 10)
+        if((currentMonth > 6 && currentMonth < 10) && !GetImprovement("Blight"))
         {
             food += foodConsumption * 4;
         }
+        else
+        {
+            food += (int)(foodConsumption * 0.75);
+        }
 
         // Consume food
-        food -= foodConsumption;
+        if (GetImprovement("Ration"))
+        {
+            food -= foodConsumption / 3;
+            SetResource("morale", -1);
+        }
+        else
+        {
+            food -= foodConsumption;
+        }
         if (food <= 0)
         {
             food = 0;
