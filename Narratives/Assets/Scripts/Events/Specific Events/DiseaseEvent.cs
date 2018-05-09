@@ -65,7 +65,7 @@ public class DiseaseEvent : MonoBehaviour {
     void OptionOne()
     {
         //quarantine the sick villagers
-        villageStats.SetResource("Morale", -30);
+        villageStats.SetResource("morale", -30);
         workloadHandler.quaratineTheSick = true;
         if (villageStats.GetImprovement("Witch"))
         {
@@ -82,7 +82,7 @@ public class DiseaseEvent : MonoBehaviour {
     void OptionTwo()
     {
         //pray the sick villagers
-        villageStats.SetResource("Morale", -15);
+        villageStats.SetResource("morale", -15);
         workloadHandler.prayForTheSick = true;
         if (villageStats.GetImprovement("Witch"))
         {
