@@ -234,11 +234,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BlightEvent.cs" />
     <Compile Include="Assets\Scripts\Events\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Events\EventOption.cs" />
     <Compile Include="Assets\Scripts\Events\EventSelection.cs" />
     <Compile Include="Assets\Scripts\Events\MonthlyEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\Specific Events\BlightEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\DiseaseEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\FestivalEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\FloodEvent.cs" />
@@ -249,6 +249,7 @@
     <Compile Include="Assets\Scripts\Events\Specific Events\WarEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\WitchEvent.cs" />
     <Compile Include="Assets\Scripts\Improvements &amp; People\ImprovementHandler.cs" />
+    <Compile Include="Assets\Scripts\LossScript.cs" />
     <Compile Include="Assets\Scripts\Village Stats\VillageStats.cs" />
     <Compile Include="Assets\Scripts\Village Stats\WorkloadHandler.cs" />
   </ItemGroup>
