@@ -44,7 +44,7 @@ public class EventSelection : MonoBehaviour {
 
     private void Update()
     {
-        if (readyForNewEvent)
+        if (readyForNewEvent && !villageStats.gameIsLost)
         {
             SelectEvent();
             readyForNewEvent = false;
@@ -64,7 +64,6 @@ public class EventSelection : MonoBehaviour {
     // Pick an event and execute it.
     void SelectEvent()
     {
-
         Debug.Log("---------------------------NEW CYCLE---------------------------");
         int eventPickBreaker = 0;
         // Pick an event we did not have last cycle.

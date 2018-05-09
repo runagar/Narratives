@@ -30,6 +30,10 @@ public class VillageStats : MonoBehaviour {
 
     private string statBoxText;
 
+    LossScript lossScript;
+
+    public bool gameIsLost = false;
+
     // Use this for initialization
     void Start()
     {
@@ -42,6 +46,8 @@ public class VillageStats : MonoBehaviour {
         for (int i = 0; i < improvementCount; i++) improvements[i] = "";
         for (int i = 0; i < peopleCount; i++) people[i] = "";
         improvements[0] = "Barn";
+
+        lossScript = this.gameObject.GetComponent<LossScript>();
     }
 
     // Update is called once per frame
@@ -139,11 +145,21 @@ public class VillageStats : MonoBehaviour {
                 break;
             case "morale":
                 morale += i;
-                if (morale <= 0) LoseGame("Morale");
+                if (morale <= 0)
+                {
+                    gameIsLost = true;
+                    lossScript.LoseGame("Morale", false);
+                }
                 break;
             case "pop_Adults":
                 population_Adults += i;
-                if (population_Adults < 0) LoseGame("Population");
+                bool children = false;
+                if (GetResource("pop_Children") > 0) children = true;
+                if (population_Adults < 0)
+                {
+                    gameIsLost = true;
+                    lossScript.LoseGame("Population", children);
+                }
                 break;
             case "pop_Children":
                 population_Children += i;
@@ -229,13 +245,9 @@ public class VillageStats : MonoBehaviour {
 
         if (work > workThreshold) SetResource("morale", -5);
         if (morale < 0) morale = 0;
+        if (morale > 100) morale = 100;
         if (population_Children < 0) population_Children = 0;
         if (population_Adults < 0) population_Adults = 0;
-    }
-
-    private void LoseGame(string lossCondition)
-    {
-
     }
 
     private void OnGUI()
