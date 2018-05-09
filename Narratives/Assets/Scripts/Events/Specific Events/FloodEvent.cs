@@ -44,7 +44,7 @@ public class FloodEvent : MonoBehaviour {
         if (villageStats.GetImprovement("Dike"))
         {
             buildingPresent = true;
-            villageStats.SetResource("food", -50);
+            villageStats.SetResource("food", -75);
 
             // Set the name, description and options for this event, if improvement has been build. e.g.
             eventName = "Flood!";
@@ -57,7 +57,7 @@ public class FloodEvent : MonoBehaviour {
         else
         {
             buildingPresent = false;
-            villageStats.SetResource("food", -150);
+            villageStats.SetResource("food", -200);
 
             // Set the name, description and options for this event.
             eventName = "Flood!";

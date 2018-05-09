@@ -74,8 +74,8 @@ public class FestivalEvent : MonoBehaviour {
             eventDescription = "The villagers would like to hold a banquet.";
             optionOne = "We have enough to hold a banquet."; 
             optionTwo = "We do not have the supplies at the current time.";
-            optionOneTooltip = "Morale decreases";
-            optionTwoTooltip = "Morale increases." + "\n" + "Increase in children after some time";
+            optionOneTooltip = "Morale increases." + "\n" + "Increase in children after some time";
+            optionTwoTooltip = "Morale decreases";
         }
         int currentMonth = eventSelection.GetCurrentMonth();
 
@@ -94,7 +94,8 @@ public class FestivalEvent : MonoBehaviour {
     void OptionOneA()
     {
         // Hold a Festival
-        villageStats.SetResource("morale", + 5);
+        villageStats.SetResource("morale", + 10);
+        villageStats.SetResource("food", -50);
         villageStats.BuildImprovement("Festival");
     }
 
