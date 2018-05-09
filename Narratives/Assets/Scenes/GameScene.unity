@@ -307,14 +307,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99233e3b8a1090249b8e90701a6392b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingDikes: 0
   repairingDikes: 0
   reparingBarricade: 0
   mineRescue: 0
+  buildingDikes: 0
   buildingGraveyard: 0
   buildingMassGrave: 0
   buildingBarricade: 0
   buildingMine: 0
+  quaratineTheSick: 0
+  prayForTheSick: 0
 --- !u!114 &1318696843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +344,7 @@ GameObject:
   - component: {fileID: 1322632528}
   - component: {fileID: 1322632527}
   - component: {fileID: 1322632533}
+  - component: {fileID: 1322632534}
   m_Layer: 0
   m_Name: events
   m_TagString: Untagged
@@ -443,6 +446,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b65a68d9665d9a545b87a84a33b8da90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: {fileID: 11400000, guid: 12658633682359f489dff2e7d1e98ad6, type: 2}
+--- !u!114 &1322632534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1322632525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46edb65a735b2e34e9b9b95120414ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skin: {fileID: 11400000, guid: 12658633682359f489dff2e7d1e98ad6, type: 2}

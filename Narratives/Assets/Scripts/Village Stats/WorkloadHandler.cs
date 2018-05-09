@@ -9,13 +9,15 @@ public class WorkloadHandler : MonoBehaviour {
     private int workload;
     private int workloadThreshold;
 
-    public bool buildingDikes, repairingDikes, reparingBarricade, mineRescue;
-    public bool buildingGraveyard, buildingMassGrave, buildingBarricade, buildingMine;
+    public bool repairingDikes, reparingBarricade, mineRescue;
+    public bool buildingDikes, buildingGraveyard, buildingMassGrave, buildingBarricade, buildingMine;
+    public bool quaratineTheSick, prayForTheSick;
 
     private int dikeTimer = 0, dikeTimerEnd = 3;
     private int graveyardTimer = 0, graveyardTimerEnd = 2;
     private int barricadeTimer = 0, barricadeTimerEnd = 3;
     private int mineTimer = 0, mineTimerEnd = 1;
+    private int quarantineTimer = 0, quarantineTimerEnd = 3; 
     private void Start()
     {
         villageStats = GameObject.Find("VillageStatHandler").GetComponent<VillageStats>();
@@ -30,6 +32,32 @@ public class WorkloadHandler : MonoBehaviour {
         {
             int farmingWorkload = (int)workloadThreshold / 2;
             workload += farmingWorkload;
+        }
+
+        if (quaratineTheSick)
+        {
+            workload += 15;
+            quarantineTimer++;
+            {
+                if(quarantineTimer >= quarantineTimerEnd)
+                {
+                    quarantineTimer = 0;
+                    quaratineTheSick = false;
+                }
+            }
+        }
+
+        if (prayForTheSick)
+        {
+            workload += 10;
+            quarantineTimer++;
+            {
+                if (quarantineTimer >= quarantineTimerEnd-2)
+                {
+                    quarantineTimer = 0;
+                    prayForTheSick = false;
+                }
+            }
         }
 
         if (buildingMine)
