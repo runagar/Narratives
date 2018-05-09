@@ -46,7 +46,7 @@ public class BlightEvent : MonoBehaviour {
     public void LaunchEvent()
     {
         // Do a flood thing. e.g. options 1 & 2, based on buildings.
-        if (eventSelection.GetCurrentMonth() < 4 && eventSelection.GetCurrentMonth() > 10)
+        if (eventSelection.GetCurrentMonth() < 7 || eventSelection.GetCurrentMonth() > 9)
         {
             villageStats.SetResource("food", -(villageStats.GetResource("food") / 2));
             cropsBlight = false;

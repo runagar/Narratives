@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaidersEvent : MonoBehaviour {
-
+public class ForestFireEvent : MonoBehaviour
+{
     VillageStats villageStats;
     EventSelection eventSelection;
     WorkloadHandler workloadHandler;
@@ -18,10 +18,6 @@ public class RaidersEvent : MonoBehaviour {
 
     private string eventName, eventDescription, optionOne, optionTwo, optionOneTooltip, optionTwoTooltip, tooltip;
     private bool showTooltip = false, buildingPresent;
-
-    //Random adults lost and raiders
-    private int randAdults;
-    private int raiders;
 
     private void Start()
     {
@@ -44,35 +40,14 @@ public class RaidersEvent : MonoBehaviour {
 
     public void LaunchEvent()
     {
-        raiders = villageStats.GetResource("raiders");
-        if (villageStats.GetImprovement("Barricade"))
-        {
-            buildingPresent = true;
+        // Set the name, description and options for this event, if improvement has been build. e.g.
+        eventName = "Forest Fire!";
+        eventDescription = "The forest next to the village has caught on fire! Nevermind how it started, protect the village!";
+        optionOne = "Protect the houses!";
+        optionTwo = "Protect the granary!";
+        optionOneTooltip = "You granary will burn down, and most of your food will be lost. \n -5 Morale.";
+        optionTwoTooltip = "Several homes will burn down, with a risk of people being caught inside. \n -5 Morale.";
 
-            randAdults = Random.Range(2, 10);
-
-            // Set the name, description and options for this event, if improvement has been build. e.g.
-            eventName = "Raiders!";
-            eventDescription = "The village is approched wandering band of " + raiders + " raiders. Your barricades protect your people while they fight off the raiders, but are heavily damaged in the battle. \n " + randAdults + " people were killed in the battle.";
-            optionOne = "Repair the barricades.";
-            optionTwo = "Let the barricades fall.";
-            optionOneTooltip = "Your barricades are repaired \n" + "+20 Workload for 2 months.";
-            optionTwoTooltip = "Your barricades are destroyed. \n" + "-5 Morale.";
-        }
-        else
-        {
-            buildingPresent = false;
-            randAdults = Random.Range(2, 20);
-
-            // Set the name, description and options for this event, if improvement has been build. e.g.
-            eventName = "Raiders!";
-            eventDescription = "The village is approched wandering band of " + raiders + " raiders. Your people defend themselves as well as they can, but the raiders make off with " + raiders*2 + " food, and kill " + randAdults + " of your people in the process.";
-            optionOne = "We need better defences!";
-            optionTwo = "Back to work.";
-            optionOneTooltip = "Build barricades to hold off the raiders next time. \n" + " +30 Workload for 3 months.";
-            optionTwoTooltip = "Reserve your workforce. \n" + " -5 Morale.";
-        }
-       
         int currentMonth = eventSelection.GetCurrentMonth();
 
         if (currentMonth > 4 && currentMonth < 10)
@@ -87,39 +62,18 @@ public class RaidersEvent : MonoBehaviour {
         drawThisEvent = true;
     }
 
-    void OptionOneA()
+    void OptionOne()
     {
-        // Repair the barricade
-        villageStats.SetResource("raiders", -Random.Range(5, raiders));
-        villageStats.SetResource("pop_Adults", -randAdults);
-        workloadHandler.reparingBarricade = true;
+        villageStats.SetResource("Morale", -5);
+        int foodLost = (int)(villageStats.GetResource("food") * 0.6);
+        villageStats.SetResource("food", -foodLost);
     }
 
-    void OptionTwoA()
+    void OptionTwo()
     {
-        // Let the barricade fall
-        villageStats.SetResource("raiders", -Random.Range(5, raiders));
-        villageStats.SetResource("pop_Adults", -randAdults);
-        villageStats.RemoveImprovement("Barricade");
-        villageStats.SetResource("morale", -5);
-    }
-
-    void OptionOneB()
-    {
-        // Build barricade
-        workloadHandler.buildingBarricade = true;
-        villageStats.BuildImprovement("Barricade");
-        villageStats.SetResource("food", -(raiders * 2));
-        villageStats.BuildImprovement("Barricade");
-    }
-
-    void OptionTwoB()
-    {
-        // Defend the village wit your lives witout barricades
-        villageStats.SetResource("raiders", -Random.Range(0, raiders));
-        villageStats.SetResource("pop_Adults", -randAdults);
-        villageStats.SetResource("food", -(raiders * 2));
-        villageStats.SetResource("morale", -5);
+        villageStats.SetResource("Morale", -5);
+        villageStats.SetResource("pop_Adults", -(Random.Range(5, 30)));
+        villageStats.SetResource("pop_Children", -(Random.Range(3, 18)));
     }
 
     void OnGUI()
@@ -143,8 +97,7 @@ public class RaidersEvent : MonoBehaviour {
 
                 if (e.button == 0 && e.type == EventType.MouseUp)
                 {
-                    if (buildingPresent) OptionOneA();
-                    else OptionOneB();
+                    OptionOne();
                     drawThisEvent = false;
                     eventSelection.SetReadyForNewEvent();
                 }
@@ -156,8 +109,7 @@ public class RaidersEvent : MonoBehaviour {
 
                 if (e.button == 0 && e.type == EventType.MouseUp)
                 {
-                    if (buildingPresent) OptionTwoA();
-                    else OptionTwoB();
+                    OptionTwo();
                     drawThisEvent = false;
                     eventSelection.SetReadyForNewEvent();
                 }

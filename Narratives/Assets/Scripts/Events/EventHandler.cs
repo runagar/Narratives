@@ -50,6 +50,9 @@ public class EventHandler : MonoBehaviour {
             case "Blight":
                 eventStore.GetComponent<BlightEvent>().LaunchEvent();
                 break;
+            case "Forest Fire":
+                eventStore.GetComponent<ForestFireEvent>().LaunchEvent();
+                break;
             default:
                 break;
         }

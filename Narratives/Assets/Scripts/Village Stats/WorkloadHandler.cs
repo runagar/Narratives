@@ -91,7 +91,7 @@ public class WorkloadHandler : MonoBehaviour {
         if (reparingBarricade)
         {
             workload += 20;
-            dikeTimer++;
+            barricadeTimer++;
             if (barricadeTimer >= barricadeTimerEnd-1)
             {
                 barricadeTimer = 0;

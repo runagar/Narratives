@@ -9,7 +9,7 @@ public class EventSelection : MonoBehaviour {
     FestivalEvent festival;
 
     // Event initialization
-    private static int numEvents = 10;
+    private static int numEvents = 11;
     private MonthlyEvent[] events = new MonthlyEvent[numEvents];
 
     // Event selection
@@ -40,6 +40,7 @@ public class EventSelection : MonoBehaviour {
         events[7] = new MonthlyEvent("Disease", 6);
         events[8] = new MonthlyEvent("War", 24);
         events[9] = new MonthlyEvent("Blight", 7);
+        events[10] = new MonthlyEvent("Forest Fire", 14);
     }
 
     private void Update()

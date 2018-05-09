@@ -34,6 +34,8 @@ public class VillageStats : MonoBehaviour {
 
     public bool gameIsLost = false;
 
+    private int month;
+
     // Use this for initialization
     void Start()
     {
@@ -53,9 +55,50 @@ public class VillageStats : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        foodConsumption = (int)((population_Adults + population_Children) / 2.0);
         workThreshold = population_Adults * 2;
-        statBoxText = "Food: " + food + " (" + foodConsumption + ") " + "\n" + "Workload: " + work + "/" + workThreshold + "\n" + "Morale: " + morale + "\n" + "Population: " + population_Children + " / " + population_Adults;
+        statBoxText = "Food: " + food + " (" + foodConsumption + ") " + "\n" + "Workload: " + work + "/" + workThreshold + "\n" + "Morale: " + morale + "\n" + "Population: " + population_Children + " / " + population_Adults + "\n";
+
+        switch (month)
+        {
+            case 1:
+                statBoxText += "Month: " + "January";
+                break;
+            case 2:
+                statBoxText += "Month: " + "February";
+                break;
+            case 3:
+                statBoxText += "Month: " + "March";
+                break;
+            case 4:
+                statBoxText += "Month: " + "April";
+                break;
+            case 5:
+                statBoxText += "Month: " + "May";
+                break;
+            case 6:
+                statBoxText += "Month: " + "June";
+                break;
+            case 7:
+                statBoxText += "Month: " + "Juli";
+                break;
+            case 8:
+                statBoxText += "Month: " + "August";
+                break;
+            case 9:
+                statBoxText += "Month: " + "September";
+                break;
+            case 10:
+                statBoxText += "Month: " + "October";
+                break;
+            case 11:
+                statBoxText += "Month: " + "November";
+                break;
+            case 12:
+                statBoxText += "Month: " + "December";
+                break;
+            default:
+                break;
+        }
     }
 
     //Look for a specific improvement in the list. Return true if it is present.
@@ -202,32 +245,38 @@ public class VillageStats : MonoBehaviour {
 
     public void UpdateVillage(int currentMonth)
     {
-
-        if (currentMonth >= 11 && GetImprovement("Blight"))
+        month = currentMonth;
+        if (currentMonth == 10 && GetImprovement("Blight"))
         {
             RemoveImprovement("Blight");
-            RemoveImprovement("Ration");
         }
 
         if (raiders <= 5) raiders = 5;
+
         // If the harvesting months are here
-        if((currentMonth > 6 && currentMonth < 10) && !GetImprovement("Blight"))
+        if (currentMonth > 6 && currentMonth < 10)
         {
-            food += foodConsumption * 4;
-        }
-        else
-        {
-            food += (int)(foodConsumption * 0.75);
+            if (!GetImprovement("Blight"))
+            {
+                food += (int)((population_Adults + population_Children) / 2 * 4);
+            }
+            else
+            {
+                food += (int)((population_Adults + population_Children) / 2 * 0.75);
+            }
+            if (currentMonth == 7) RemoveImprovement("Ration");
         }
 
         // Consume food
         if (GetImprovement("Ration"))
         {
-            food -= foodConsumption / 3;
+            foodConsumption = (int)(((population_Adults + population_Children) / 2.0) /3);
+            food -= foodConsumption;
             SetResource("morale", -1);
         }
         else
         {
+            foodConsumption = (int)((population_Adults + population_Children) / 2.0);
             food -= foodConsumption;
         }
         if (food <= 0)
