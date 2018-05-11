@@ -61,7 +61,7 @@ public class RaidersEvent : MonoBehaviour {
             optionOne = "Repair the barricades.";
             optionTwo = "Let the barricades fall.";
             optionOneTooltip = "Your barricades are repaired \n" + "+20 Workload for 2 months.";
-            optionTwoTooltip = "Your barricades are destroyed. \n" + "-5 Morale.";
+            optionTwoTooltip = "Your barricades are destroyed. \n" + "Morale decreases";
         }
         else
         {
@@ -74,7 +74,7 @@ public class RaidersEvent : MonoBehaviour {
             optionOne = "We need better defences!";
             optionTwo = "Back to work.";
             optionOneTooltip = "Build barricades to hold off the raiders next time. \n" + " +30 Workload for 3 months.";
-            optionTwoTooltip = "Reserve your workforce. \n" + " -5 Morale.";
+            optionTwoTooltip = "Reserve your workforce. \n" + "Morale decreases.";
         }
        
         int currentMonth = eventSelection.GetCurrentMonth();

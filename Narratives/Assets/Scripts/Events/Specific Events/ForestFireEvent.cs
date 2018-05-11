@@ -49,8 +49,8 @@ public class ForestFireEvent : MonoBehaviour
         eventDescription = "The forest next to the village has caught on fire! Nevermind how it started, protect the village!";
         optionOne = "Protect the houses!";
         optionTwo = "Protect the granary!";
-        optionOneTooltip = "You granary will burn down, and most of your food will be lost. \n -5 Morale.";
-        optionTwoTooltip = "Several homes will burn down, with a risk of people being caught inside. \n -5 Morale.";
+        optionOneTooltip = "You granary will burn down, and most of your food will be lost. \n Morale decreases.";
+        optionTwoTooltip = "Several homes will burn down, with a risk of people being caught inside. \n Morale decreases.";
 
         int currentMonth = eventSelection.GetCurrentMonth();
 

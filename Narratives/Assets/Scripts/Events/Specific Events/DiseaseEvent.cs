@@ -86,7 +86,6 @@ public class DiseaseEvent : MonoBehaviour {
     void OptionTwo()
     {
         //pray the sick villagers
-        villageStats.SetResource("morale", -15);
         workloadHandler.prayForTheSick = true;
         if (villageStats.GetImprovement("Witch"))
         {
