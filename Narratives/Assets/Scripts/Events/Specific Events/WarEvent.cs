@@ -57,8 +57,8 @@ public class WarEvent : MonoBehaviour {
             eventDescription = "The war is over and some of the villagers who went to war have returned.";
             optionOne = "Celebrate the return of the soldiers.";
             optionTwo = "Give the returned soldiers a warm welcome.";
-            optionOneTooltip = "-50 food" + "\n" + "morale increases";
-            optionTwoTooltip = "-30 food" + "\n" + "morale increases.";
+            optionOneTooltip = "-50 food" + "\n" + "Morale significantly increases";
+            optionTwoTooltip = "-30 food" + "\n" + "Morale increases.";
         }
         else
         {
@@ -114,7 +114,7 @@ public class WarEvent : MonoBehaviour {
     void OptionTwoB()
     {
         // Celebrate the return of the soldiers.
-        villageStats.SetResource("morale", +10);
+        villageStats.SetResource("morale", +5);
         villageStats.SetResource("food", -30);
         villageStats.SetResource("pop_Adults", Random.Range((int)(villageStats.GetResource("soldiers") * 0.25), (int)(villageStats.GetResource("soldiers") * 0.75)));
         villageStats.SetResource("soldiers", -villageStats.GetResource("soldiers"));

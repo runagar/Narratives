@@ -66,8 +66,8 @@ public class FestivalEvent : MonoBehaviour {
             eventDescription = "Due to the banquet held some time ago the birthrates are up. " + childrenBorn + " children are born";
             optionOne = "Let the families keep the new children.";
             optionTwo = "Leave the Children in the woods.";
-            optionOneTooltip = "+" + childrenBorn + " children" + "\n" + "morale increases";
-            optionTwoTooltip = "We do not have enough food to support the increase in children" + "\n" +"Significant decrease in morale.";
+            optionOneTooltip = "+" + childrenBorn + " children" + "\n" + "Morale increases";
+            optionTwoTooltip = "Morale significantly decreases.";
         }
         else
         {
@@ -78,7 +78,7 @@ public class FestivalEvent : MonoBehaviour {
             eventDescription = "The villagers would like to hold a banquet.";
             optionOne = "We have enough to hold a banquet."; 
             optionTwo = "We do not have the supplies at the current time.";
-            optionOneTooltip = "Morale increases." + "\n" + "Increase in children after some time";
+            optionOneTooltip = "Lose food and Morale increases." + "\n" + "Increase in children after some time";
             optionTwoTooltip = "Morale decreases";
         }
         int currentMonth = eventSelection.GetCurrentMonth();

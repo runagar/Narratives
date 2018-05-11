@@ -66,8 +66,8 @@ public class PreciousMetalsEvent : MonoBehaviour {
             eventDescription = "Some of the women have found traces of precious metals while down at the river washing cloths.";
             optionOne = "Build a mine.";
             optionTwo = "Do nothing.";
-            optionOneTooltip = "+" + (int)((villageStats.GetResource("pop_Adults")*2) * 0.25) + " Workload while working the mine" + "\n" + "Gain: Mine" + "\n" + "+1 Morale per month while working the mine.";
-            optionTwoTooltip = "Reserve your workforce." + "\n" + "Morale decreases slightly";
+            optionOneTooltip = "+" + (int)((villageStats.GetResource("pop_Adults")*2) * 0.25) + " Workload while working the mine" + "\n" + "Gain: Mine" + "\n" + "Morale increases per month while working the mine.";
+            optionTwoTooltip = "Reserve your workforce." + "\n" + "Morale decreases";
         }
         int currentMonth = eventSelection.GetCurrentMonth();
 

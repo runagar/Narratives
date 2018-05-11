@@ -53,8 +53,8 @@ public class WitchEvent : MonoBehaviour {
             eventDescription = "The wise woman have been accused of witchcraft after curing a sick child, seemingly without real medicine ";
             optionOne = "Burn the witch.";
             optionTwo = "Drown the witch.";
-            optionOneTooltip = "The witch burns for seemingly hours" + "\n" + "Significant decrease to morale.";
-            optionTwoTooltip = "The witch downs." + "\n" + "Slight decrease to morale";
+            optionOneTooltip = "The witch burns for seemingly hours" + "\n" + "Morale decreases.";
+            optionTwoTooltip = "The witch downs." + "\n" + "Morale decreases";
         }
         else
         {
@@ -64,8 +64,8 @@ public class WitchEvent : MonoBehaviour {
             eventDescription = "An elderly woman appears in the village and ask for a place to live.";
             optionOne = "Invite the elderly to live with you.";
             optionTwo = "We don't have space for people who cant work.";
-            optionOneTooltip = "The elderly women joins the village" + "\n" + "Gain: Wise Women" + "\n" + "+ 5 to morale.";
-            optionTwoTooltip = "The elderly women leaves the village while cursing it's name." + "\n" + "some of the livestock dies!";
+            optionOneTooltip = "The elderly women joins the village" + "\n" + "Gain: Wise Women" + "\n" + "Morale increases.";
+            optionTwoTooltip = "The elderly women leaves the village while cursing it's name." + "\n" + "some of the food rots!";
         }
         int currentMonth = eventSelection.GetCurrentMonth();
 
@@ -91,7 +91,7 @@ public class WitchEvent : MonoBehaviour {
     void OptionTwoA()
     {
         // drown the witch
-        villageStats.SetResource("morale", -5);
+        villageStats.SetResource("morale", -10);
         villageStats.RemovePerson("Witch");
     }
 
