@@ -45,7 +45,7 @@ public class NomadsEvent : MonoBehaviour {
     {
         // Set the name, description and options for this event, if improvement has been build. e.g.
         eventName = "Nomads.";
-        eventDescription = "The village is approched by a band of nomads lokking to settle down.";
+        eventDescription = "The village is approached by a band of nomads looking to settle down.";
         optionOne = "Invite them to live in the village.";
         optionTwo = "We do not currently have sufficient food to support more people";
         optionOneTooltip = "+15 People" + "\n" + "Morale increases.";

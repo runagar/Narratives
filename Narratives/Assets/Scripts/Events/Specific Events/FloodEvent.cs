@@ -48,7 +48,7 @@ public class FloodEvent : MonoBehaviour {
 
             // Set the name, description and options for this event, if improvement has been build. e.g.
             eventName = "Flood!";
-            eventDescription = "A flood has stiken the land, but your dikes took the blunt of the blow. 50 food has been lost. However, the dikes are damaged, and will have to be repaired.";
+            eventDescription = "A flood has stiken the land, but your dikes took the blunt of the blow. 75 food has been lost. However, the dikes are damaged, and will have to be repaired.";
             optionOne = "Repair the dikes.";
             optionTwo = "Let them fall.";
             optionOneTooltip = "+20 Workload for 3 months" + "\n" + "Should another flood happen the dikes will take the blunt of the blow.";
@@ -61,7 +61,7 @@ public class FloodEvent : MonoBehaviour {
 
             // Set the name, description and options for this event.
             eventName = "Flood!";
-            eventDescription = "A flood has stiken the land, destroying many of your crops and flooding your barn. 150 food has been lost.";
+            eventDescription = "A flood has stiken the land, destroying many of your crops and flooding your barn. 200 food has been lost.";
             optionOne = "Build dikes.";
             optionTwo = "Do nothing.";
             optionOneTooltip = "+30 Workload for 3 months" + "\n" + "Gain: Dikes" + "\n" + "Should another flood happen, it won't hit nearly as hard.";
