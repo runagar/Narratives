@@ -151,6 +151,11 @@ public class PreciousMetalsEvent : MonoBehaviour {
                     eventSelection.SetReadyForNewEvent();
                 }
             }
+            else
+            {
+                //If the tooltip string is blank, stop drawing the tooltip
+                tooltip = "";
+            }
 
             if (showTooltip)
             {
@@ -161,7 +166,9 @@ public class PreciousMetalsEvent : MonoBehaviour {
 
     void DrawTooltip()
     {
+        float toolTipHeight = tooltip.Length;
 
+        GUI.Box(new Rect(Event.current.mousePosition.x - 20, Event.current.mousePosition.y, 200, toolTipHeight), tooltip, skin.GetStyle("tooltipBackground"));
 
     }
 }
