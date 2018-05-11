@@ -252,6 +252,7 @@
     <Compile Include="Assets\Scripts\Events\Specific Events\WitchEvent.cs" />
     <Compile Include="Assets\Scripts\Improvements &amp; People\ImprovementHandler.cs" />
     <Compile Include="Assets\Scripts\LossScript.cs" />
+    <Compile Include="Assets\Scripts\Main Menu\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Village Stats\VillageStats.cs" />
     <Compile Include="Assets\Scripts\Village Stats\WorkloadHandler.cs" />
   </ItemGroup>

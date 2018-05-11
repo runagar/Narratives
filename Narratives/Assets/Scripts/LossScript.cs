@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LossScript : MonoBehaviour {
 
@@ -108,6 +109,7 @@ public class LossScript : MonoBehaviour {
     {
         gameIsLost = false;
         stats.gameIsLost = false;
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     // Quit to main menu
@@ -115,6 +117,7 @@ public class LossScript : MonoBehaviour {
     {
         gameIsLost = false;
         stats.gameIsLost = false;
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
     // Quit the game
