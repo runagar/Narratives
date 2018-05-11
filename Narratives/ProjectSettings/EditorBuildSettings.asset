@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 96f516b2144472f40bc5d18d8bdb7188
+  - enabled: 1
+    path: Assets/Scenes/MoraleLoss.unity
+    guid: 1a88b4a7e1bec8044aabfbe5ae2b5f58
+  - enabled: 1
+    path: Assets/Scenes/PopulationLoss.unity
+    guid: 78f60c102ee1b784581e21e2a4cd8328

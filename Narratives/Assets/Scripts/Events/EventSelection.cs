@@ -47,7 +47,7 @@ public class EventSelection : MonoBehaviour {
 
     private void Update()
     {
-        if (readyForNewEvent && !villageStats.gameIsLost)
+        if (readyForNewEvent)
         {
             SelectEvent();
             readyForNewEvent = false;

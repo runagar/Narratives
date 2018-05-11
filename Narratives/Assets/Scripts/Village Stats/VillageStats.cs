@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VillageStats : MonoBehaviour {
 
@@ -30,8 +31,6 @@ public class VillageStats : MonoBehaviour {
 
     private string statBoxText;
 
-    LossScript lossScript;
-
     public bool gameIsLost = false;
 
     private int month;
@@ -48,8 +47,6 @@ public class VillageStats : MonoBehaviour {
         for (int i = 0; i < improvementCount; i++) improvements[i] = "";
         for (int i = 0; i < peopleCount; i++) people[i] = "";
         improvements[0] = "Barn";
-
-        lossScript = this.gameObject.GetComponent<LossScript>();
     }
 
     // Update is called once per frame
@@ -190,18 +187,14 @@ public class VillageStats : MonoBehaviour {
                 morale += i;
                 if (morale <= 0)
                 {
-                    gameIsLost = true;
-                    lossScript.LoseGame("Morale", false);
+                    SceneManager.LoadScene(2, LoadSceneMode.Single);
                 }
                 break;
             case "pop_Adults":
                 population_Adults += i;
-                bool children = false;
-                if (GetResource("pop_Children") > 0) children = true;
                 if (population_Adults < 0)
                 {
-                    gameIsLost = true;
-                    lossScript.LoseGame("Population", children);
+                    SceneManager.LoadScene(3, LoadSceneMode.Single);
                 }
                 break;
             case "pop_Children":
