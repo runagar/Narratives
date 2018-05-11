@@ -60,7 +60,7 @@ public class BlightEvent : MonoBehaviour {
             eventDescription = "Rats have gotten into our food supplies and we have lost half our food";
             optionOne = "Ration our food.";
             optionTwo = "Continue as usual.";
-            optionOneTooltip = "morale decreases";
+            optionOneTooltip = "Morale decreases";
             optionTwoTooltip = "Ignore the situation and continue as normal";
         }
         else
@@ -73,7 +73,7 @@ public class BlightEvent : MonoBehaviour {
             eventDescription = "The fields have been hit by a blight destroying our crops";
             optionOne = "Ration our food.";
             optionTwo = "Continue as usual.";
-            optionOneTooltip = "morale decreases";
+            optionOneTooltip = "Morale decreases";
             optionTwoTooltip = "Ignore the situation and continue as normal";
         }
         int currentMonth = eventSelection.GetCurrentMonth();

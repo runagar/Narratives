@@ -62,8 +62,8 @@ public class FestivalEvent : MonoBehaviour {
             villageStats.SetResource("morale", childrenBorn);
 
             // Set the name, description and options for this event, if improvement has been build. e.g.
-            eventName = "Birhtrates are up";
-            eventDescription = "Due to the banquet held some time ago the birthrates are up. " + childrenBorn + " children are born";
+            eventName = "Baby Boom";
+            eventDescription = "Due to the banquet held some time ago the birth rate are up. " + childrenBorn + " children are born";
             optionOne = "Let the families keep the new children.";
             optionTwo = "Leave the Children in the woods.";
             optionOneTooltip = "+" + childrenBorn + " children" + "\n" + "Morale increases";
