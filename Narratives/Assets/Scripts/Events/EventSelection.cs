@@ -23,6 +23,8 @@ public class EventSelection : MonoBehaviour {
 
     int pickBreakAmount = 0;
 
+    private bool firstEvent = true;
+
     // Event Creation in Start()
     void Start ()
     {
@@ -96,16 +98,23 @@ public class EventSelection : MonoBehaviour {
         {
             eventName = "Festival";
             monthsSinceFestival = 0;
-
+        }
+        if (firstEvent)
+        {
+            eventName = "First";
         }
 
         // Get the name of the event, and execute it in the handler.
         this.gameObject.GetComponent<EventHandler>().HandleEvent(eventName);
 
         workloadHandler.UpdateWorkload(currentMonth);
-        villageStats.UpdateVillage(currentMonth);
+        villageStats.UpdateVillage(currentMonth, firstEvent);
         currentMonth++;
         if (currentMonth >= 13) currentMonth = 1;
+        if (firstEvent)
+        {
+            firstEvent = false;
+        }
     }
 
     void BirthEvent()

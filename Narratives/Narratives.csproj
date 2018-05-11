@@ -242,6 +242,7 @@
     <Compile Include="Assets\Scripts\Events\Specific Events\BlightEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\DiseaseEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\FestivalEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\Specific Events\FirstEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\FloodEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\ForestFireEvent.cs" />
     <Compile Include="Assets\Scripts\Events\Specific Events\GraveyardEvent.cs" />

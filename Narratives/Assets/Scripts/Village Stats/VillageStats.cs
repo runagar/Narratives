@@ -243,60 +243,64 @@ public class VillageStats : MonoBehaviour {
         return 0;
     }
 
-    public void UpdateVillage(int currentMonth)
+    public void UpdateVillage(int currentMonth, bool firstEvent)
     {
-        month = currentMonth;
-        if (currentMonth == 10 && GetImprovement("Blight"))
-        {
-            RemoveImprovement("Blight");
-        }
 
-        if (raiders <= 5) raiders = 5;
-
-        // If the harvesting months are here
-        if (currentMonth > 6 && currentMonth < 10)
+        if (!firstEvent)
         {
-            if (!GetImprovement("Blight"))
+            month = currentMonth;
+            if (currentMonth == 10 && GetImprovement("Blight"))
             {
-                food += (int)((population_Adults + population_Children) / 2 * 4);
+                RemoveImprovement("Blight");
+            }
+
+            if (raiders <= 5) raiders = 5;
+
+            // If the harvesting months are here
+            if (currentMonth > 6 && currentMonth < 10)
+            {
+                if (!GetImprovement("Blight"))
+                {
+                    food += (int)((population_Adults + population_Children) / 2 * 4);
+                }
+                else
+                {
+                    food += (int)((population_Adults + population_Children) / 2 * 0.75);
+                }
+                if (currentMonth == 7) RemoveImprovement("Ration");
+            }
+
+            // Consume food
+            if (GetImprovement("Ration"))
+            {
+                foodConsumption = (int)(((population_Adults + population_Children) / 2.0) / 3);
+                food -= foodConsumption;
+                SetResource("morale", -1);
             }
             else
             {
-                food += (int)((population_Adults + population_Children) / 2 * 0.75);
+                foodConsumption = (int)((population_Adults + population_Children) / 2.0);
+                food -= foodConsumption;
             }
-            if (currentMonth == 7) RemoveImprovement("Ration");
-        }
+            if (food <= 0)
+            {
+                food = 0;
+                SetResource("pop_Adults", -3);
+                SetResource("pop_Children", -1);
+                SetResource("morale", -10);
+            }
 
-        // Consume food
-        if (GetImprovement("Ration"))
-        {
-            foodConsumption = (int)(((population_Adults + population_Children) / 2.0) /3);
-            food -= foodConsumption;
-            SetResource("morale", -1);
-        }
-        else
-        {
-            foodConsumption = (int)((population_Adults + population_Children) / 2.0);
-            food -= foodConsumption;
-        }
-        if (food <= 0)
-        {
-            food = 0;
-            SetResource("pop_Adults", -3);
-            SetResource("pop_Children", -1);
-            SetResource("morale", -10);
-        }
+            if (GetImprovement("Mine"))
+            {
+                SetResource("morale", 1);
+            }
 
-        if (GetImprovement("Mine"))
-        {
-            SetResource("morale", 1);
+            if (work > workThreshold) SetResource("morale", -5);
+            if (morale < 0) morale = 0;
+            if (morale > 100) morale = 100;
+            if (population_Children < 0) population_Children = 0;
+            if (population_Adults < 0) population_Adults = 0;
         }
-
-        if (work > workThreshold) SetResource("morale", -5);
-        if (morale < 0) morale = 0;
-        if (morale > 100) morale = 100;
-        if (population_Children < 0) population_Children = 0;
-        if (population_Adults < 0) population_Adults = 0;
     }
 
     private void OnGUI()

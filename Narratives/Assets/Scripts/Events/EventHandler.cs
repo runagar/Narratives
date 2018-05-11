@@ -20,6 +20,9 @@ public class EventHandler : MonoBehaviour {
         // TODO: Pick and resolve the correct event.
         switch (eventName)
         {
+            case "First":
+                eventStore.GetComponent<FirstEvent>().LaunchEvent();
+                break;
             case "Flood":
                 eventStore.GetComponent<FloodEvent>().LaunchEvent();
                 break;
